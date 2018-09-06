@@ -1,0 +1,58 @@
+"*":
+  "atom-ide-ui":
+    hyperclick:
+      linuxTriggerKeys: "shiftKey"
+  core:
+    closeDeletedFileTabs: true
+    disabledPackages: [
+      "vue2-autocomplete"
+      "language-vue-component"
+      "language-gfm"
+      "spell-check"
+    ]
+    excludeVcsIgnoredPaths: false
+    telemetryConsent: "no"
+    themes: [
+      "one-dark-ui"
+      "atom-dark-syntax"
+    ]
+  editor:
+    fontSize: 13
+    lineHeight: 2.5
+    showIndentGuide: true
+    showInvisibles: true
+    softWrap: true
+  "exception-reporting":
+    userId: "2706e411-9b2b-4c5c-a19f-4de312d56505"
+  "markdown-themeable-pdf":
+    codeHighlightingTheme: "atelier-dune-dark.css"
+    enableLinkify: true
+  minimap:
+    plugins:
+      "minimap-autohide": true
+      "minimap-autohideDecorationsZIndex": 0
+  "spell-check":
+    locales: [
+      "e"
+    ]
+  "tree-view": {}
+  welcome:
+    showOnStartup: false
+".blade.html.php.text":
+  editor:
+    commentEnd: " --}}"
+    commentStart: "{{-- "
+    tabLength: 4
+".c.source":
+  editor:
+    tabLength: 4
+".cpp.source":
+  editor:
+    tabLength: 4
+".html.php.text":
+  editor:
+    tabLength: 4
+".md.text":
+  editor:
+    preferredLineLength: 120
+    softWrapAtPreferredLineLength: true

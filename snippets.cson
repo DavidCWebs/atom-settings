@@ -1,0 +1,308 @@
+# Your snippets
+#
+# Atom snippets allow you to enter a simple prefix in the editor and hit tab to
+# expand the prefix into a larger code block with templated values.
+#
+# You can create a new snippet in this file by typing "snip" and then hitting
+# tab.
+#
+# An example CoffeeScript snippet to expand log to console.log:
+#
+# '.source.coffee':
+#   'Console log':
+#     'prefix': 'log'
+#     'body': 'console.log $1'
+#
+#     md target was: .source.gfm
+'.source.makefile':
+   'C++ Makefile boilerplate':
+     'prefix': 'makeC++'
+     'body': """
+        SOURCES:= $(wildcard *.cpp) $(wildcard *.hpp)
+        OBJECTS:= $(wildcard *.cpp)
+        OUT:= bin/${1:main}
+        main: $(SOURCES)
+        	g++ -W -Wall -std=c++17 -o $(OUT) $(OBJECTS)
+
+        debug: $(SOURCES)
+        	g++ -W -Wall -std=c++14 -g -o $(OUT) $(OBJECTS)
+      """
+    'C Makefile boilerplate':
+      'prefix': 'makeC'
+      'body': """
+         SOURCES:= $(wildcard *.c) $(wildcard *.h)
+         OBJECTS:= $(wildcard *.c)
+         OUT:= bin/${1:main}
+         main: $(SOURCES)
+         	cc -W -Wall -o $(OUT) $(OBJECTS)
+       """
+'.text.md, .text.markdown, .source.gfm ':
+   'code.Highlight':
+     'prefix': 'ch'
+     'body': """
+        {% highlight $1 startinline %}
+        $2
+        {% endhighlight %}
+      """
+    'code.CodeBlock':
+      'prefix': 'precodeHighlight'
+      'body': """
+        <pre>
+          <code class="$1">
+            $2
+          </code>
+        </pre>
+       """
+    'code.intJekyllLink':
+      'prefix': 'jekLink'
+      'body': '[$1]({{site.baseurl}}{% post_url $2 filename-no-extension %})'
+    'code.newPost':
+      'prefix': 'newPostYaml'
+      'body': """
+        ---
+        layout: post
+        title: $1
+        categories:
+          - $2
+        author: David Egan
+        excerpt: $3
+        ---
+      """
+'.source.less':
+  '@media.bsRespLess':
+    'prefix': 'bsRespLess'
+    'body': """
+    /* Large screen & Bigger */
+    @media (min-width: @screen-lg) {
+    	//
+    }
+    /* Medium screen and smaller */
+    @media (max-width: @screen-md-max) {
+    	//
+    }
+    /* Small screen and smaller */
+    @media (max-width: @screen-sm-max) {
+    	//
+    }
+    /* Extra small screen and smaller */
+    @media (max-width: @screen-xs-max) {
+    	//
+    }
+    /* smaller than Extra small screen */
+    @media (max-width: (@screen-xs - 1)) {
+    	//
+    }
+    """
+'.source.css':
+  '@media.mobFirstMediaQueries':
+    'prefix': 'modFirstMediaQueries'
+    'body': """
+    /* Custom, iPhone Retina */
+    @media only screen and (min-width : 320px) {
+
+    }
+
+    /* Extra Small Devices, Phones */
+    @media only screen and (min-width : 480px) {
+
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (min-width : 768px) {
+
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (min-width : 992px) {
+
+    }
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (min-width : 1200px) {
+
+    }
+    """
+'.source.scss':
+  '@media.bs4RespSass':
+    'prefix': 'bs4RespSass'
+    'body': """
+    @include media-breakpoint-up(xs) {
+      // Extra small devices (portrait phones, less than ???px)
+
+    }
+    @include media-breakpoint-up(sm) {
+      // Small devices (landscape phones, 34em and up)
+
+    }
+    @include media-breakpoint-up(md) {
+      // Medium devices (tablets, 48em and up)
+
+    }
+    @include media-breakpoint-up(lg) {
+      // Large devices (desktops, 62em and up)
+
+    }
+    @include media-breakpoint-up(xl) {
+      // Extra large devices (large desktops, 75em and up)
+
+    }
+    """
+  '@media.bs3RespSass':
+    'prefix': 'bs3RespSass'
+    'body': """
+    /* Large screen & Bigger */
+    @media (min-width: $screen-lg) {
+    	//
+    }
+    /* Medium screen and smaller */
+    @media (max-width: $screen-md-max) {
+    	//
+    }
+    /* Small screen and smaller */
+    @media (max-width: $screen-sm-max) {
+    	//
+    }
+    /* Extra small screen and smaller */
+    @media (max-width: $screen-xs-max) {
+    	//
+    }
+    /* smaller than Extra small screen */
+    @media (max-width: ($screen-xs - 1)) {
+    	//
+    }
+    """
+'.source.js':
+  'console.log':
+    'prefix': 'log'
+    'body': 'console.log(${1:"crash"})$2'
+'.text.php':
+  'wpHomeConfig':
+    'prefix': 'wpHomeConfig'
+    'body': """
+    define('WP_HOME','http://$1.local');
+    define('WP_SITEURL','http://$1.local');
+    """
+  'WP.featuredImg':
+    'prefix': 'WpImgLoop'
+    'body': """
+    <?php
+
+      if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned to it.
+
+        $img_title = get_post( get_post_thumbnail_id() )->post_title; //The Title
+        $img_caption = get_post( get_post_thumbnail_id() )->post_excerpt; //The Caption
+        $img_description = get_post( get_post_thumbnail_id() )->post_content; // The Description
+
+        $atts = [
+          'class' => 'img-responsive',
+          'title' => $img_title,
+           ];
+
+        the_post_thumbnail( 'full', $atts );
+
+    }
+    ?>
+    """
+    'WP.pluginPath':
+      'prefix': 'WpPluginPath'
+      'body': """
+      require_once plugin_dir_path( dirname( __FILE__ ) ) . 'path/to/file.php';
+    """
+    'Route':
+      'prefix': 'LaravelRouteGroup'
+      'body': """
+      Route::group(['prefix' => '$1'], function(){
+          $2
+      });
+    """
+'.text.blade':
+  'Comment':
+    'prefix': 'bc'
+    'body': """
+    {{-- $1 --------------------------------------------------------------$2}}
+    """
+  'FormGroup':
+    'prefix': 'formgroup'
+    'body': """
+    {{-- $1 --}}
+    <div class="form-group">
+        {!! Form::label('$1') !!}
+        {!! Form::${2:text}('$1', ${3:null}, ${4:['class'=> 'form-control']}) !!}
+    </div>$5
+    """
+'.source.cpp':
+  'End Line':
+    'prefix': 'el'
+    'body': '<< std::endl;'
+  'Start Output':
+    'prefix': 'out'
+    'body': 'std::cout << $1 ${2:<<} $3'
+
+'.source.c, .source.cpp, .source.objc, .source.objcpp':
+  'main()':
+    'prefix': 'main'
+    'body': 'int main(int argc, char const *argv[])\n{\n\t${1:/* code */}\n\treturn 0;\n}'
+  'any function':
+    'prefix': 'func'
+    'body': '${1:int} ${2:name}(${3:/* arguments */})\n{\n\t${5:/* code */}\n\treturn ${4:0};\n}'
+
+'.source.c':
+  'Hello World':
+    'prefix': 'HelloWorld'
+    'body': 'printf("++++out of cheese error+++\\\\n++++redo from start++++\\\\n");'
+
+'.source.py, source.python':
+  'Crunchbang Python 3':
+    'prefix': 'crunch'
+    'body': '#!/usr/bin/python3'
+
+'.source.hpp, .source.h, .source.cpp':
+  'Define Class':
+    'prefix': 'class'
+    'body':
+      """
+      class $1
+      {
+      private:
+          ${2://}
+      public:
+          ${3://}
+      };
+      """
+  'Boilerplate for C/C++ Header File':
+    'prefix': 'head'
+    'body':
+      """
+      #ifndef ${1:FILENAME}
+      #define ${1:FILENAME}
+      ${2:text}
+      #endif
+      """
+  'Range-based for loop':
+    'prefix':'rfor'
+    'body':
+      """
+      for (${1:auto}& ${2:element} : ${3:collection})$4
+      """
+  'Integer for loop':
+    'prefix':'forint'
+    'body':
+      """
+      for (${1:int} ${2:i} = 0; ${2:i} < ${3:count}; ${2:i}++)
+        $4
+      """
+  'hello world':
+    'prefix':'hello'
+    'body':
+      """
+      std::cout << "+++ out of cheese error +++" <<std::endl;
+      std::cout << "+++++ redo from start +++++" <<std::endl;
+      """
+  'Iterator for loop':
+    'prefix':'forit'
+    'body':
+      """
+      for (const auto it = ${1:myContainer}.begin(); it != ${1:myContainer}.end(); it++) {
+          $2
+      }
+      """
